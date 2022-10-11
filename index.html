@@ -43,45 +43,45 @@
 			}
 	</style>
  	<script>   
-$.ajax({
-    url: 'https://data.cityofnewyork.us/resource/t29m-gskq.json',
-    type: "get",
-    dataType: "json",
+		$.ajax({
+   				 url: "https://data.cityofnewyork.us/resource/t29m-gskq.json",
+   				 type: "get",
+   				 dataType: "json",
    
-    success: function(data) {
-        drawTable(data);
-    }
-});
+  		  success: function(data) {
+      			  drawTable(data);
+  			  }
+			});
 
-function drawTable(data) {
-    for (var i = 0; i < data.length; i++) {
-        drawRow(data[i]);
-    }
-}
+		function drawTable(data) {
+		    for (var i = 0; i < data.length; i++) {
+		        drawRow(data[i]);
+		    }
+		}
 
-function drawRow(rowData) {
-    var row = $("<tr />")
-    $("#taxi_data").append(row); 
-    row.append($("<td>" + rowData.VendorID + "</td>"));
-    row.append($("<td>" + rowData.tpep_pickup_datetime + "</td>"));
-    row.append($("<td>" + rowData.tpep_dropoff_datetime + "</td>"));
-    row.append($("<td>" + rowData.passenger_count + "</td>"));
-    row.append($("<td>" + rowData.trip_distance + "</td>"));
-    row.append($("<td>" + rowData.RatecodeID + "</td>"));
-    row.append($("<td>" + rowData.store_and_fwd_flag + "</td>"));
-    row.append($("<td>" + rowData.PULocationID + "</td>"));
-    row.append($("<td>" + rowData.DOLocationID + "</td>"));
-    row.append($("<td>" + rowData.payment_type + "</td>"));
-    row.append($("<td>" + rowData.fare_amount + "</td>"));
-    row.append($("<td>" + rowData.extra + "</td>"));
-    row.append($("<td>" + rowData.mta_tax + "</td>"));
-    row.append($("<td>" + rowData.tip_amount + "</td>"));
-    row.append($("<td>" + rowData.tolls_amount + "</td>"));
-    row.append($("<td>" + rowData.improvement_surcharge + "</td>"));
-    row.append($("<td>" + rowData.total_amount + "</td>"));
-}
+		function drawRow(rowData) {
+		    var row = $("<tr />")
+		    $("#taxi_data").append(row); 
+		    row.append($("<td>" + rowData.VendorID + "</td>"));
+		    row.append($("<td>" + rowData.tpep_pickup_datetime + "</td>"));
+		    row.append($("<td>" + rowData.tpep_dropoff_datetime + "</td>"));
+		    row.append($("<td>" + rowData.passenger_count + "</td>"));
+		    row.append($("<td>" + rowData.trip_distance + "</td>"));
+		    row.append($("<td>" + rowData.RatecodeID + "</td>"));
+		    row.append($("<td>" + rowData.store_and_fwd_flag + "</td>"));
+		    row.append($("<td>" + rowData.PULocationID + "</td>"));
+		    row.append($("<td>" + rowData.DOLocationID + "</td>"));
+		    row.append($("<td>" + rowData.payment_type + "</td>"));
+		    row.append($("<td>" + rowData.fare_amount + "</td>"));
+		    row.append($("<td>" + rowData.extra + "</td>"));
+		    row.append($("<td>" + rowData.mta_tax + "</td>"));
+		    row.append($("<td>" + rowData.tip_amount + "</td>"));
+		    row.append($("<td>" + rowData.tolls_amount + "</td>"));
+		    row.append($("<td>" + rowData.improvement_surcharge + "</td>"));
+		    row.append($("<td>" + rowData.total_amount + "</td>"));
+		}
 
-</script>
+	</script>
 
 	<!--<script>
 		const api_url ='https://data.cityofnewyork.us/resource/t29m-gskq.json'
