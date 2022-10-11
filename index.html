@@ -9,7 +9,7 @@
 <body>
 	<h1> Yellow Taxi Data </h1>
 
-      <!--  <table id='table'>
+   <table id='taxi_data'>
             
             <tr>
                 <th>VendorID</th>
@@ -29,53 +29,58 @@
                 <th>tolls_amount</th>
                 <th>improvement_surcharge</th>
                 <th>total_amount</th>
-            </tr>-->
-
-<script>
-        function showTable(){
-  		fetch("https://data.cityofnewyork.us/resource/t29m-gskq.json")
-   		 .then(response => response.json())
-   		 .then(data => createTable(data));
+            </tr>
+    </table>
+    <style>
+		table {
+  				border: 2px solid #666;
+    			width: 100%;
 		}
-    
-		function createTable(data) {
-		var table = "<table border=1>";
-// add a row for name and marks
-			table += `<tr>
-                <th>VendorID</th>
-                <th>tpep_pickup_datetime</th>
-                <th>tpep_dropoff_datetime</th>
-                <th>passenger_count</th>
-                <th>trip_distance</th>
-                <th>RatecodeID</th>
-                <th>store_and_fwd_flag</th>
-                <th>PULocationID</th>
-                <th>DOLocationID</th>
-                <th>payment_type</th>
-                <th>fare_amount</th>
-                <th>extra</th>
-                <th>mta_tax</th>
-                <th>tip_amount</th>
-                <th>tolls_amount</th>
-                <th>improvement_surcharge</th>
-                <th>total_amount</th>
-          </tr>`;
-// now loop through students
-// show their name and marks
-var tr = "";
-for(let i = 0; i < data.result.length; i++) {
-  tr += "<tr>";
-  tr += `<td>${data.result[i].name}</td>`;
-  for (var key in data.result[i].marks) {
-    tr += `<td>${data.result[i].marks[key]}</td>`;
-  }
-  tr += "</tr>"
-}
-table += tr + "</table>";
+		th {
+  				background: #f8f8f8;
+  				font-weight: bold;
+    			padding: 2px;
+			}
+	</style>
+ 	<script>   
+$.ajax({
+    url: 'https://data.cityofnewyork.us/resource/t29m-gskq.json',
+    type: "get",
+    dataType: "json",
+   
+    success: function(data) {
+        drawTable(data);
+    }
+});
 
-  // append table to body
-  document.body.innerHTML += table;
+function drawTable(data) {
+    for (var i = 0; i < data.length; i++) {
+        drawRow(data[i]);
+    }
 }
+
+function drawRow(rowData) {
+    var row = $("<tr />")
+    $("#taxi_data").append(row); 
+    row.append($("<td>" + rowData.VendorID + "</td>"));
+    row.append($("<td>" + rowData.tpep_pickup_datetime + "</td>"));
+    row.append($("<td>" + rowData.tpep_dropoff_datetime + "</td>"));
+    row.append($("<td>" + rowData.passenger_count + "</td>"));
+    row.append($("<td>" + rowData.trip_distance + "</td>"));
+    row.append($("<td>" + rowData.RatecodeID + "</td>"));
+    row.append($("<td>" + rowData.store_and_fwd_flag + "</td>"));
+    row.append($("<td>" + rowData.PULocationID + "</td>"));
+    row.append($("<td>" + rowData.DOLocationID + "</td>"));
+    row.append($("<td>" + rowData.payment_type + "</td>"));
+    row.append($("<td>" + rowData.fare_amount + "</td>"));
+    row.append($("<td>" + rowData.extra + "</td>"));
+    row.append($("<td>" + rowData.mta_tax + "</td>"));
+    row.append($("<td>" + rowData.tip_amount + "</td>"));
+    row.append($("<td>" + rowData.tolls_amount + "</td>"));
+    row.append($("<td>" + rowData.improvement_surcharge + "</td>"));
+    row.append($("<td>" + rowData.total_amount + "</td>"));
+}
+
 </script>
 
 	<!--<script>
