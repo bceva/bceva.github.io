@@ -84,37 +84,6 @@
 		}
 
 	</script>
-
-	<!--<script>
-		const api_url ='https://data.cityofnewyork.us/resource/t29m-gskq.json'
-		
-		async function getdata(){
-			const response = await fetch(api_url);
-			const data = await response.json()
-			const { VendorID, tpep_pickup_datetime, tpep_dropoff_datetime, passenger_count,trip_distance, RatecodeID, store_and_fwd_flag, PULocationID, DOLocationID,	payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, improvement_surcharge, total_amount} = data; 
-
-			document.getElementById('vendor').textcontext=VendorID;
-			document.getElementById('pickup').textcontext=tpep_pickup_datetime;
-			document.getElementById('dropoff').textcontext=tpep_dropoff_datetime;
-			document.getElementById('passenger').textcontext=passenger_count;
-			document.getElementById('distance').textcontext=trip_distance;
-			document.getElementById('rate').textcontext=RatecodeID;
-			document.getElementById('store').textcontext=store_and_fwd_flag;
-			document.getElementById('PULocation').textcontext=PULocationID;
-			document.getElementById('DOLocation').textcontext=DOLocationID;
-			document.getElementById('payment').textcontext=payment_type;
-			document.getElementById('fare').textcontext=fare_amount;
-			document.getElementById('extra').textcontext=extra;
-			document.getElementById('mta').textcontext=mta_tax;
-			document.getElementById('tip').textcontext=tip_amount;
-			document.getElementById('tolls').textcontext=tolls_amount;
-			document.getElementById('improvement').textcontext=improvement_surcharge;
-			document.getElementById('total').textcontext=total_amount;
-		}
-		getdata();
-
-
-	</script>-->
 	
 </body>
 </html>
