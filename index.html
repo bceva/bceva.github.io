@@ -1,20 +1,79 @@
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=\, initial-scale=1.0"/>
 	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 	<title>Yellow Taxi Data Assignment</title>
 	
 </head>
 
 <body>
-	<script>
+	<h1> Yellow Taxi Data </h1>
+
+        <table id='table'>
+            
+            <tr>
+                <th>VendorID</th>
+                <th>tpep_pickup_datetime</th>
+                <th>tpep_dropoff_datetime</th>
+                <th>passenger_count</th>
+                <th>trip_distance</th>
+                <th>RatecodeID</th>
+                <th>store_and_fwd_flag</th>
+                <th>PULocationID</th>
+                <th>DOLocationID</th>
+                <th>payment_type</th>
+                <th>fare_amount</th>
+                <th>extra</th>
+                <th>mta_tax</th>
+                <th>tip_amount</th>
+                <th>tolls_amount</th>
+                <th>improvement_surcharge</th>
+                <th>total_amount</th>
+            </tr>
+
+
+        <script>
+                $(document).ready(function () {
+  
+                    // FETCHING DATA FROM JSON FILE
+                    $.getJSON("https://data.cityofnewyork.us/resource/t29m-gskq.json", 
+                            function (data) {
+                        var taxi_data = '';
+  
+                        // ITERATING THROUGH OBJECTS
+                        $.each(data, function (key, value) {
+  
+                            //CONSTRUCTION OF ROWS HAVING
+                            // DATA FROM JSON OBJECT
+                            taxi_data += '<tr>';
+                            taxi_data += '<td>' + 
+                                value.VendorID + '</td>';
+  
+                            taxi_data += '<td>' + 
+                                value.tpep_pickup_datetime + '</td>';
+  
+                            taxi_data += '<td>' + 
+                                value.tpep_dropoff_datetime + '</td>';
+  
+                            taxi_data += '<td>' + 
+                                value.passenger_count + '</td>';
+  
+                            taxi_data += '</tr>';
+                        });
+                          
+                        //INSERTING ROWS INTO TABLE 
+                        $('#table').append(taxi_data);
+                    });
+                });
+            </script>
+
+	<!--<script>
 		const api_url ='https://data.cityofnewyork.us/resource/t29m-gskq.json'
 		
 		async function getdata(){
 			const response = await fetch(api_url);
-			const data = await response.json();
-			const {VendorID, tpep_pickup_datetime, tpep_dropoff_datetime, passenger_count,trip_distance, RatecodeID, store_and_fwd_flag, PULocationID, DOLocationID,	payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, improvement_surcharge, total_amount} = data; 
+			const data = await response.json()
+			const { VendorID, tpep_pickup_datetime, tpep_dropoff_datetime, passenger_count,trip_distance, RatecodeID, store_and_fwd_flag, PULocationID, DOLocationID,	payment_type, fare_amount, extra, mta_tax, tip_amount, tolls_amount, improvement_surcharge, total_amount} = data; 
 
 			document.getElementById('vendor').textcontext=VendorID;
 			document.getElementById('pickup').textcontext=tpep_pickup_datetime;
@@ -37,7 +96,7 @@
 		getdata();
 
 
-	</script>
+	</script>-->
 	
 </body>
 </html>
