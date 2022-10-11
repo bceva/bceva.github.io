@@ -31,57 +31,51 @@
                 <th>total_amount</th>
             </tr>-->
 
-
-        <script>
-  let arrTaxi;
-  
-  let get_data = async() => {
-    let url = "https://data.cityofnewyork.us/resource/t29m-gskq.json";
-    let response = await fetch (url);
-    arrTaxi = await response.json();	// fill array with data.
+<script>
+        function showTable(){
+  		fetch("https://data.cityofnewyork.us/resource/t29m-gskq.json")
+   		 .then(response => response.json())
+   		 .then(data => createTable(data));
+		}
     
-    make_the_table();		// convert data to table.
-  }  
-  
-  let make_the_table = () => {
-    // Extract value from table header.
-    let col = [];
-    for (let i = 0; i < arrTaxi.length; i++) {
-      for (let key in arrTaxi[i]) {
-        if (col.indexOf(key) === -1) {
-          col.push(key);
-        }
-      }
-    }
-
-    // Create a table.
-    const table = document.createElement("table");
-
-    // Create table header row using the extracted headers above.
-    let tr = table.insertRow(-1);                 // table row.
-
-    for (let i = 0; i < col.length; i++) {
-      let th = document.createElement("th");      // table header.
-      th.innerHTML = col[i];
-      tr.appendChild(th);
-    }
-
-    // add json data to the table as rows.
-    for (let i = 0; i < arrTaxi.length; i++) {
-
-      tr = table.insertRow(-1);
-
-      for (let j = 0; j < col.length; j++) {
-        let tabCell = tr.insertCell(-1);
-        tabCell.innerHTML = arrTaxi[i][col[j]];
-      }
-    }
-
-    // Now, add the newly created table with json data, to a container.
-    const divShowData = document.getElementById('showData');
-    divShowData.innerHTML = "";
-    divShowData.appendChild(table);
+		function createTable(data) {
+		var table = "<table border=1>";
+// add a row for name and marks
+			table += `<tr>
+                <th>VendorID</th>
+                <th>tpep_pickup_datetime</th>
+                <th>tpep_dropoff_datetime</th>
+                <th>passenger_count</th>
+                <th>trip_distance</th>
+                <th>RatecodeID</th>
+                <th>store_and_fwd_flag</th>
+                <th>PULocationID</th>
+                <th>DOLocationID</th>
+                <th>payment_type</th>
+                <th>fare_amount</th>
+                <th>extra</th>
+                <th>mta_tax</th>
+                <th>tip_amount</th>
+                <th>tolls_amount</th>
+                <th>improvement_surcharge</th>
+                <th>total_amount</th>
+          </tr>`;
+// now loop through students
+// show their name and marks
+var tr = "";
+for(let i = 0; i < data.result.length; i++) {
+  tr += "<tr>";
+  tr += `<td>${data.result[i].name}</td>`;
+  for (var key in data.result[i].marks) {
+    tr += `<td>${data.result[i].marks[key]}</td>`;
   }
+  tr += "</tr>"
+}
+table += tr + "</table>";
+
+  // append table to body
+  document.body.innerHTML += table;
+}
 </script>
 
 	<!--<script>
